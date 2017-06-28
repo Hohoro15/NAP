@@ -75,14 +75,15 @@ public class GameManager : MonoBehaviour
         UpdateGameTime();
 
         UpdateStatus();
-
-        UpdateBoring();
     }
 
     void UpdateStatus()
     {
         if (isPaused) return;
+
         UpdateStamina();
+
+        UpdateBoring();
     }
 
     void UpdateStamina()
