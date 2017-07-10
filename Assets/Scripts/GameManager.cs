@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     //Consider pause, second
     private float playTime = 0f;
+    private float startTime = 0f;
 
     //convert to hour
     private const float MinutesPerPlayTime = 2f;
@@ -25,17 +26,22 @@ public class GameManager : MonoBehaviour
     private float pausedTime = 0f;
 
     //Status
-    private Status status;
+    [HideInInspector] public Status status;
     private const float reduceStaminaPerFrame = 10f / framePerMinutes;
+    private const float increaseStaminaPerFrame = 10f / framePerMinutes;
     private const float increaseBoringPerFrame = 5f / framePerMinutes;
 
     //Sleeping
     [HideInInspector] public bool isSleeping = false;
-    private float sleepStartTime;
+    [HideInInspector] public float sleepStartTime;
     private float sleepTime = 0f;
 
 
-
+    public bool isSleepCoolTime()
+    {
+        if (playTime - sleepStartTime <= 10f) return true;
+        else return false;
+    }
 
     void Awake()
     {
@@ -61,7 +67,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
 
-        gm.playTime = Time.time;
+        gm.startTime = Time.time;
+        gm.playTime = 0f;
 
         // Prevent gm overlaping
         if (GMCreated == true)
@@ -90,7 +97,8 @@ public class GameManager : MonoBehaviour
     {
         if(isSleeping)
         {
-            status.updateStatus((int)Status.StatusType.Stamina, sleepStaminaPerFrame());
+            //status.updateStatus((int)Status.StatusType.Stamina, sleepStaminaPerFrame());
+            status.updateStatus((int)Status.StatusType.Stamina, increaseStaminaPerFrame);
         }
         else
         {
@@ -127,7 +135,7 @@ public class GameManager : MonoBehaviour
                 pauseLasting = false;
                 pausedTime += Time.time - pauseStartTime;
             }
-            playTime = Time.time - pausedTime;
+            playTime = Time.time - pausedTime - startTime;
 
             if (isSleeping) sleepTime = playTime - sleepStartTime;
             else sleepTime = 0f;
