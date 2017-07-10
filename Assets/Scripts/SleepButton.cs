@@ -25,6 +25,7 @@ public class SleepButton : MonoBehaviour
     public void OnClick()
     {
         if (GameManager.gm.isPaused) return;
+        if (GameManager.gm.isSleepCoolTime()) return;
         if(!GameManager.gm.isSleeping) GameManager.gm.sleepStartTime = GameManager.gm.getPlayTime();
         GameManager.gm.isSleeping = !GameManager.gm.isSleeping;
     }

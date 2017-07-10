@@ -37,7 +37,11 @@ public class GameManager : MonoBehaviour
     private float sleepTime = 0f;
 
 
-
+    public bool isSleepCoolTime()
+    {
+        if (playTime - sleepStartTime <= 10f) return true;
+        else return false;
+    }
 
     void Awake()
     {
