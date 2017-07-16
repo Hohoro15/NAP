@@ -14,7 +14,10 @@ public class foodscrpt : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!GameManager.gm.isFoodCoolTime()) GetComponentInChildren<grayfood>;
+        if (!GameManager.gm.isFoodCoolTime())
+        {
+            GetComponentInChildren<grayfood>;
+        }
         else GetComponentInChildren<food>;
 
 	}
@@ -25,8 +28,7 @@ public class foodscrpt : MonoBehaviour {
     {
         if (GameManager.gm.isPaused) return;
         if (GameManager.gm.isFoodCoolTime()) return;
-        status.updateStatus(0, 20f);
-        GameManager.gm.foodAvail = !GameManager.gm.foodAvail;
+        status.updateStatus(0, 20f);        
         GameManager.gm.foodStartTime = GameManager.gm.getPlayTime();
     }
 }

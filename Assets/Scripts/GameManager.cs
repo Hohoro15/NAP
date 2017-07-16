@@ -34,8 +34,10 @@ public class GameManager : MonoBehaviour
     private float sleepStartTime;
     private float sleepTime = 0f;
 
-    public float foodStartTime;
-    public bool foodAvail;
+    public float foodStartTime;    
+
+    public float jobStartTime;
+    
 
 
 
@@ -141,10 +143,16 @@ public class GameManager : MonoBehaviour
     {
         return playTime;
     }
-
+    //food
     public bool isFoodCoolTime()
     {
         if (playTime - foodStartTime <= 4f) return true;
+        else return false;
+    }
+    //job
+    public bool isJobCoolTime()
+    {
+        if (playTime - foodStartTime <= 30f) return true;
         else return false;
     }
 }
