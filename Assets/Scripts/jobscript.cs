@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class jobscript : MonoBehaviour {
 
-    Status status;
+    
 
 	// Use this for initialization
 	void Start () {
@@ -20,8 +20,7 @@ public class jobscript : MonoBehaviour {
     {
         if (GameManager.gm.isPaused) return;
         if (GameManager.gm.isJobCoolTime()) return;
-        GameManager.gm.status.updateStatus(0, -20f);
-        status.updateStatus(5, 40f);        
+        GameManager.gm.jobEffect();        
         GameManager.gm.jobStartTime = GameManager.gm.getPlayTime();
     }
 }

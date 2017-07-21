@@ -4,21 +4,37 @@ using UnityEngine;
 
 public class foodscrpt : MonoBehaviour {
 
-    Status status;  
+    private GameObject chicken;
+    private GameObject gray_chicken;
+
 
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+        chicken = transform.GetChild(0).gameObject;
+        gray_chicken = transform.GetChild(1).gameObject;
+        chicken.SetActive(true);
+        gray_chicken.SetActive(false);
+        GameManager.gm.foodEaten= false;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        if (!GameManager.gm.isFoodCoolTime())
+        if (GameManager.gm.foodEaten)
         {
-            GetComponentInChildren<grayfood>;
+            if (!GameManager.gm.isFoodCoolTime())
+            {
+                chicken.SetActive(true);
+                gray_chicken.SetActive(false);
+                GameManager.gm.foodEaten = false;                
+            }
+            else
+            {
+                chicken.SetActive(false);
+                gray_chicken.SetActive(true);
+            }
         }
-        else GetComponentInChildren<food>;
 
 	}
 
@@ -28,7 +44,8 @@ public class foodscrpt : MonoBehaviour {
     {
         if (GameManager.gm.isPaused) return;
         if (GameManager.gm.isFoodCoolTime()) return;
-        status.updateStatus(0, 20f);        
+        GameManager.gm.foodEaten = true;
+        GameManager.gm.foodEffect();      
         GameManager.gm.foodStartTime = GameManager.gm.getPlayTime();
     }
 }
