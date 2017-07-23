@@ -15,26 +15,23 @@ public class foodscrpt : MonoBehaviour {
         gray_chicken = transform.GetChild(1).gameObject;
         chicken.SetActive(true);
         gray_chicken.SetActive(false);
-        GameManager.gm.foodEaten= false;
+        GameManager.gm.foodStartTime = GameManager.gm.getPlayTime() - 4f;
 
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (GameManager.gm.foodEaten)
-        {
-            if (!GameManager.gm.isFoodCoolTime())
+        if (!GameManager.gm.isFoodCoolTime())
             {
                 chicken.SetActive(true);
-                gray_chicken.SetActive(false);
-                GameManager.gm.foodEaten = false;                
+                gray_chicken.SetActive(false);                               
             }
             else
             {
                 chicken.SetActive(false);
                 gray_chicken.SetActive(true);
             }
-        }
+        
 
 	}
 
@@ -43,8 +40,7 @@ public class foodscrpt : MonoBehaviour {
     void Onclick()
     {
         if (GameManager.gm.isPaused) return;
-        if (GameManager.gm.isFoodCoolTime()) return;
-        GameManager.gm.foodEaten = true;
+        if (GameManager.gm.isFoodCoolTime()) return;        
         GameManager.gm.foodEffect();      
         GameManager.gm.foodStartTime = GameManager.gm.getPlayTime();
     }
