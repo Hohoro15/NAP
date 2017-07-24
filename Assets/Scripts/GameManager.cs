@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
     {
         UpdateGameTime();
 
-        UpdateStatus();
+        //UpdateStatus();
     }
 
     void UpdateStatus()

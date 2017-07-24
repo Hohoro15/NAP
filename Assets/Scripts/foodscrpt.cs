@@ -14,8 +14,8 @@ public class foodscrpt : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!GameManager.gm.isFoodCoolTime()) GetComponentInChildren<grayfood>;
-        else GetComponentInChildren<food>;
+        //if (!GameManager.gm.isFoodCoolTime()) GetComponentInChildren<grayfood>;
+        //else GetComponentInChildren<food>;
 
 	}
 

@@ -8,13 +8,13 @@ public class bedscript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Sleeptime.time=time
+        //Sleeptime.time=time
 	}
     
 	
 	// Update is called once per frame
 	void Update () {
-		if (GameManager.gm.isSleeping) 
+		//if (GameManager.gm.isSleeping) 
 	}
     public void Click()
     {
