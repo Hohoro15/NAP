@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     public GameObject gamemanager;
     public static GameObject _gamemanager;
 
+    private GameObject background;
+    private GameObject backgroundGray;
+
     //Consider pause, second
     private float playTime = 0f;
 
@@ -31,8 +34,8 @@ public class GameManager : MonoBehaviour
 
     //Sleeping
     [HideInInspector] public bool isSleeping = false;
-    private float sleepStartTime;
-    private float sleepTime = 0f;
+    public List<float> increaseStaminaAmountBySleepPerHour;
+    private float increaseStaminaBySleepPerFrame;
 
     public float foodStartTime;
     public bool foodAvail;
@@ -69,6 +72,11 @@ public class GameManager : MonoBehaviour
         if (GMCreated == true)
             return;
         GMCreated = true;
+
+        background = transform.Find("background").gameObject;
+        backgroundGray = transform.Find("background_gray").gameObject;
+
+        backgroundOn();
     }
 
     // Update is called once per frame
@@ -92,7 +100,7 @@ public class GameManager : MonoBehaviour
     {
         if(isSleeping)
         {
-            status.updateStatus((int)Status.StatusType.Stamina, sleepStaminaPerFrame());
+            status.updateStatus((int)Status.StatusType.Stamina, increaseStaminaBySleepPerFrame);
         }
         else
         {
@@ -105,10 +113,31 @@ public class GameManager : MonoBehaviour
         status.updateStatus((int)Status.StatusType.Boring, increaseBoringPerFrame);
     }
 
-    float sleepStaminaPerFrame()
+    //backgroud
+    public void backgroundOn()
     {
-        // fomula: minutes/3600 + 1/15
-        return ((sleepTime * MinutesPerPlayTime) / 3600f + 1f / 15f) / framePerMinutes;
+        background.SetActive(true);
+        backgroundGray.SetActive(false);
+    }
+
+    public void backgroundOff()
+    {
+        backgroundGray.SetActive(true);
+        background.SetActive(false);
+    }
+
+    //Sleep
+    public void SleepStart(int hour)
+    {
+        increaseStaminaBySleepPerFrame = increaseStaminaAmountBySleepPerHour[hour] / (30f * 60f);
+        backgroundOff();
+        isSleeping = true;
+    }
+
+    public void SleepEnd()
+    {
+        backgroundOn();
+        isSleeping = false;
     }
 
     // Calculate Time
@@ -130,9 +159,6 @@ public class GameManager : MonoBehaviour
                 pausedTime += Time.time - pauseStartTime;
             }
             playTime = Time.time - pausedTime;
-
-            if (isSleeping) sleepTime = playTime - sleepStartTime;
-            else sleepTime = 0f;
         }
     }
 
