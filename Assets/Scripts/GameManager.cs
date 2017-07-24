@@ -96,6 +96,11 @@ public class GameManager : MonoBehaviour
         UpdateBoring();
     }
 
+    public float getStatus(int index)
+    {
+        return status.getStatus(index);
+    }
+
     void UpdateStamina()
     {
         if(isSleeping)
@@ -129,7 +134,7 @@ public class GameManager : MonoBehaviour
     //Sleep
     public void SleepStart(int hour)
     {
-        increaseStaminaBySleepPerFrame = increaseStaminaAmountBySleepPerHour[hour] / (30f * 60f);
+        increaseStaminaBySleepPerFrame = increaseStaminaAmountBySleepPerHour[hour] / (hour * 30f * 60f);
         backgroundOff();
         isSleeping = true;
     }

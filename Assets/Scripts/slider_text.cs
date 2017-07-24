@@ -7,9 +7,12 @@ public class slider_text : MonoBehaviour {
     private Slider slider;
     private Text text;
 
+    bedscript x;
+
+
 	// Use this for initialization
 	void Start () {
-		slider = GetComponent<Slider>();
+        slider = GetComponent<Slider>();
         text = transform.Find("Slider_text").GetComponent<Text>();
     }
 	
