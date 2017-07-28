@@ -4,15 +4,32 @@ using UnityEngine;
 
 public class state_button : MonoBehaviour {
 
-    private GameObject stateButton;
+    
+    public GameObject stateWindow;
+    public GameObject staminaSlider;
+    public GameObject moneySlider;
+    private float staminaNum;
+    private float moneyNum;
+
+
 
 	// Use this for initialization
 	void Start () {
-		stateButton=transform.GetChild()
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    void StaminaChange()
+    {
+        staminaNum = transform.Find("GameManager").transform.Find("Status").GetComponent<>;
+
+    }
+    void MoneyChange()
+    {
+        moneyNum=
+    }
 }

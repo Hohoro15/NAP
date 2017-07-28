@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class bedscript : MonoBehaviour {
 
-    public GameObject bed;
-    public GameObject gray_bed;
-    public GameObject pickSleepTime;
+    private GameObject bed;
+    private GameObject gray_bed;
+    private GameObject pickSleepTime;
 
 	// Use this for initialization
 	void Start () {
@@ -27,11 +27,16 @@ public class bedscript : MonoBehaviour {
 
     void OnClick()
     {
-        if (GameManager.gm.isPaused) return;
-        
+        if (GameManager.gm.isPaused) return;        
         bed.SetActive(false);
         gray_bed.SetActive(true);        
         pickSleepTime.SetActive(true);
         
+    }
+    public void sleepOff()
+    {
+        bed.SetActive(true);
+        gray_bed.SetActive(false);
+        pickSleepTime.SetActive(false);
     }
 }
