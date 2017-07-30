@@ -31,9 +31,19 @@ public class GameManager : MonoBehaviour
 
     //Sleeping
     [HideInInspector] public bool isSleeping = false;
-    private float sleepStartTime;
-    private float sleepTime = 0f;
+    [HideInInspector] public float sleepStartTime;
+    [HideInInspector] public float sleepTime = 0f;
 
+    //food
+    [HideInInspector] public float foodStartTime;    
+
+    //part time job
+    [HideInInspector] public float jobStartTime;
+    
+
+    //scene
+    public GameObject mainScene;
+    public GameObject grayMainScene;
 
 
 
@@ -139,4 +149,41 @@ public class GameManager : MonoBehaviour
     {
         return playTime;
     }
+    //food
+    public bool isFoodCoolTime()
+    {
+        if (playTime - foodStartTime < 4f) return true;
+        else return false;
+    }
+    public void foodEffect()
+    {
+        status.updateStatus(0,20f);
+    }
+    //job
+    public bool isJobCoolTime()
+    {
+        if (playTime - foodStartTime < 30f) return true;
+        else return false;
+    }
+    public void jobEffect()
+    {
+        status.updateStatus(0, -20f);
+        status.updateStatus(5, 40f);
+    }
+
+    //sleep
+    public void sceneChange(bool what)
+    {
+        if (!what)
+        {
+            mainScene.SetActive(false);
+            grayMainScene.SetActive(true);
+        }
+        else
+        {
+            mainScene.SetActive(true);
+            grayMainScene.SetActive(false);
+        }
+    }
+
 }
