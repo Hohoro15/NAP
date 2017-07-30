@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class dogscript : MonoBehaviour
 {
-    private float dog_playTIme;
+    private float dog_playTime;
     public GameObject dog;
     public GameObject sleeping_dog;
 
@@ -24,7 +24,7 @@ public class dogscript : MonoBehaviour
     {
         if (GameManager.gm.isPaused)
             return;
-        if (GameManager.gm.dogPlaying && (GameManager.gm.getPlayTime() - dog_playTIme > 30f))
+        if (GameManager.gm.dogPlaying && (GameManager.gm.getPlayTime() - dog_playTime > 30f))
             GameManager.gm.dogEnd();
 
     }
@@ -33,7 +33,7 @@ public class dogscript : MonoBehaviour
     {
         if (GameManager.gm.isPaused) return;
 
-        dog_playTIme = GameManager.gm.getPlayTime();
+        dog_playTime = GameManager.gm.getPlayTime();
         dog.SetActive(false);
         sleeping_dog.SetActive(true);
         GameManager.gm.dogStart();

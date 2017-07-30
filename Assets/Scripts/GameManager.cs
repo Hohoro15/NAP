@@ -52,6 +52,17 @@ public class GameManager : MonoBehaviour
         dogPlaying = false;
     }
 
+    //sink
+    [HideInInspector] public bool sink_delay;
+    public void sink_start()
+    {
+    }
+
+    public void sink_check()
+    {
+    }
+
+
 
     //scene
     public GameObject mainScene;
