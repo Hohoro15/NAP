@@ -12,6 +12,7 @@ public class saveAndLoad : MonoBehaviour {
 	void Start ()
     {
         number = PlayerPrefs.GetInt("Number",0);
+        PlayerPrefs.Save();
         text = transform.Find("saveText").GetComponent<Text>();
     }
 	
@@ -29,5 +30,6 @@ public class saveAndLoad : MonoBehaviour {
     public void onClickSave()
     {
         PlayerPrefs.SetInt("Number",number);
+        PlayerPrefs.Save();
     }
 }
