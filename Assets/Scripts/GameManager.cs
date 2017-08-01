@@ -31,8 +31,10 @@ public class GameManager : MonoBehaviour
 
     //Sleeping
     [HideInInspector] public bool isSleeping = false;
+    public List<float> increaseStaminaAmountBySleepPerHour;
+    private float increaseStaminaBySleepPerFrame;
     [HideInInspector] public float sleepStartTime;
-    [HideInInspector] public float sleepTime = 0f;
+    
 
     //food
     [HideInInspector] public float foodStartTime;    
@@ -42,8 +44,8 @@ public class GameManager : MonoBehaviour
     
 
     //scene
-    public GameObject mainScene;
-    public GameObject grayMainScene;
+    private GameObject mainScene;
+    private GameObject grayMainScene;
 
 
 
@@ -77,6 +79,11 @@ public class GameManager : MonoBehaviour
         if (GMCreated == true)
             return;
         GMCreated = true;
+
+        mainScene = transform.Find("main scene").gameObject;
+        grayMainScene = transform.Find("gray_scene_prev").gameObject;
+
+        backgroundOn();
     }
 
     // Update is called once per frame
@@ -84,6 +91,7 @@ public class GameManager : MonoBehaviour
     {
         UpdateGameTime();
 
+        //이건 왜 지우셨?
         UpdateStatus();
     }
 
@@ -100,7 +108,7 @@ public class GameManager : MonoBehaviour
     {
         if(isSleeping)
         {
-            status.updateStatus((int)Status.StatusType.Stamina, sleepStaminaPerFrame());
+            status.updateStatus((int)Status.StatusType.Stamina, increaseStaminaBySleepPerFrame);
         }
         else
         {
@@ -113,11 +121,7 @@ public class GameManager : MonoBehaviour
         status.updateStatus((int)Status.StatusType.Boring, increaseBoringPerFrame);
     }
 
-    float sleepStaminaPerFrame()
-    {
-        // fomula: minutes/3600 + 1/15
-        return ((sleepTime * MinutesPerPlayTime) / 3600f + 1f / 15f) / framePerMinutes;
-    }
+    
 
     // Calculate Time
     void UpdateGameTime()
@@ -138,9 +142,7 @@ public class GameManager : MonoBehaviour
                 pausedTime += Time.time - pauseStartTime;
             }
             playTime = Time.time - pausedTime;
-
-            if (isSleeping) sleepTime = playTime - sleepStartTime;
-            else sleepTime = 0f;
+                        
         }
     }
 
@@ -149,6 +151,19 @@ public class GameManager : MonoBehaviour
     {
         return playTime;
     }
+
+    //background
+    public void backgroundOn()
+    {
+        mainScene.SetActive(true);
+        grayMainScene.SetActive(false);
+    }
+    public void backgroundOff()
+    {
+        mainScene.SetActive(false);
+        grayMainScene.SetActive(true);
+    }
+
     //food
     public bool isFoodCoolTime()
     {
@@ -172,18 +187,23 @@ public class GameManager : MonoBehaviour
     }
 
     //sleep
-    public void sceneChange(bool what)
+    public void SleepStart(int hour)
     {
-        if (!what)
-        {
-            mainScene.SetActive(false);
-            grayMainScene.SetActive(true);
-        }
-        else
-        {
-            mainScene.SetActive(true);
-            grayMainScene.SetActive(false);
-        }
+        increaseStaminaBySleepPerFrame = increaseStaminaAmountBySleepPerHour[hour] / (hour * 30f * 60f);
+        backgroundOff();
+        isSleeping = true;
+    }
+
+    public void SleepEnd()
+    {
+        backgroundOn();
+        isSleeping = false;
+    }
+
+    //state
+    public float getStatus(int index)
+    {
+        return status.getStatus(index);
     }
 
 }

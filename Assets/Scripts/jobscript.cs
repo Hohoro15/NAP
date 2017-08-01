@@ -16,7 +16,7 @@ public class jobscript : MonoBehaviour {
 		
 	}
 
-    void Onclick()
+    public void Onclick()
     {
         if (GameManager.gm.isPaused) return;
         if (GameManager.gm.isJobCoolTime()) return;

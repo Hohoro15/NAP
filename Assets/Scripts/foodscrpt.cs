@@ -41,7 +41,7 @@ public class foodscrpt : MonoBehaviour {
 
     
 
-    void Onclick()
+    public void Onclick()
     {
         if (GameManager.gm.isPaused) return;
         if (GameManager.gm.isFoodCoolTime()) return;        
