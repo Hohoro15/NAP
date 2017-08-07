@@ -72,6 +72,11 @@ public class bedscript : MonoBehaviour {
         GameManager.gm.backgroundOff();
     }
 
+    public void valueChange()
+    {
+        sleepLimit = slider.value;
+        //이게 사람이 드래그하면 바뀌는 value를 말하는건가 아니면 시간에 따라 바뀐다면 그 value를 말하는건가..
+    }
     public void CancelClick()
     {
         if (GameManager.gm.isPaused) return;
@@ -79,4 +84,6 @@ public class bedscript : MonoBehaviour {
         pickTime(false);
         sleeping(false);
     }
+
+    //sleep 하고있었는지. Sleep start time과 끈 타임과 다시 킨 타임?! sleepLimit도 기억. 
 }

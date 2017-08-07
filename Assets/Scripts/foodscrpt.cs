@@ -48,4 +48,6 @@ public class foodscrpt : MonoBehaviour {
         GameManager.gm.foodEffect();      
         GameManager.gm.foodStartTime = GameManager.gm.getPlayTime();
     }
+
+    //Food cool time도 생각합니다.
 }

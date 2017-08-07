@@ -23,4 +23,5 @@ public class jobscript : MonoBehaviour {
         GameManager.gm.jobEffect();        
         GameManager.gm.jobStartTime = GameManager.gm.getPlayTime();
     }
+    // Jobcooltime 중이었는지겠죠? 아마 이것도 start time과 끈시각, 다시 킨 시각을 계산하면 되지않을까.
 }

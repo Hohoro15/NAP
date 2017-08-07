@@ -47,6 +47,9 @@ public class GameManager : MonoBehaviour
     private GameObject mainScene;
     private GameObject grayMainScene;
 
+    //randomTime
+    
+
 
 
     void Awake()
@@ -204,6 +207,28 @@ public class GameManager : MonoBehaviour
     public float getStatus(int index)
     {
         return status.getStatus(index);
+    }
+    // Quest
+    public void Homework()
+    {
+        status.updateStatus(2, -10f);
+        status.updateStatus(3, -10f);
+    }
+    public void Presentation()
+    {
+        status.updateStatus(2, -15f);
+        status.updateStatus(3, -13f);
+        status.updateStatus(1, -30f);      
+    }
+    public void Test()
+    {
+        status.updateStatus(0, -10f);
+        status.updateStatus(2, -25f);
+        status.updateStatus(3, -20f);
+    }
+    public void Interview()
+    {
+        status.updateStatus(1, -20f);
     }
 
 }
