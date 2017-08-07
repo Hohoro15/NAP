@@ -41,7 +41,19 @@ public class GameManager : MonoBehaviour
 
     //part time job
     [HideInInspector] public float jobStartTime;
-    
+
+    //dog
+    [HideInInspector] public bool dogPlaying;
+    public void dogStart()
+    {
+        dogPlaying = true;
+    }
+
+    public void dogEnd()
+    {
+        dogPlaying = false;
+    }
+
 
     //scene
     private GameObject mainScene;
