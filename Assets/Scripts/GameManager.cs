@@ -12,7 +12,11 @@ public class GameManager : MonoBehaviour
     public static GameObject _gamemanager;
 
     //Consider pause, second
-    private float playTime = 0f;
+    private float playTime = 0f;  //저장해놓자.
+    private float startTime = 0f;
+    private float nujukPlayTime = 0f;
+
+    
 
     //convert to hour
     private const float MinutesPerPlayTime = 2f;
@@ -44,15 +48,7 @@ public class GameManager : MonoBehaviour
 
     //dog
     [HideInInspector] public bool dogPlaying;
-    public void dogStart()
-    {
-        dogPlaying = true;
-    }
-
-    public void dogEnd()
-    {
-        dogPlaying = false;
-    }
+    
 
 
     //scene
@@ -60,7 +56,14 @@ public class GameManager : MonoBehaviour
     private GameObject grayMainScene;
 
     //randomTime
-    
+    private float day;
+    private float randomNum;
+
+    //Quest boolean
+    private bool homework =true;
+    private bool presentation= true;
+    private bool test = true;
+    private bool interview = true;
 
 
 
@@ -88,7 +91,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
 
-        gm.playTime = Time.time;
+        gm.playTime = 0f;
+        gm.startTime = Time.time;
 
         // Prevent gm overlaping
         if (GMCreated == true)
@@ -156,7 +160,7 @@ public class GameManager : MonoBehaviour
                 pauseLasting = false;
                 pausedTime += Time.time - pauseStartTime;
             }
-            playTime = Time.time - pausedTime;
+            playTime = Time.time - pausedTime - startTime;
                         
         }
     }
@@ -164,7 +168,29 @@ public class GameManager : MonoBehaviour
     //second
     public float getPlayTime()
     {
-        return playTime;
+        return playTime + nujukPlayTime;
+    }
+
+    //calculate day
+    void CalDay()
+    {
+        int tempday = (int)nujukPlayTime;
+        day = (float)tempday;
+    }
+
+    public float getDay()
+    {
+        return day;
+    }
+
+    //calculate random
+    public float randomGet()
+    {
+        randomNum = Random.Range(1f, 145f);
+        int temp = (int)randomNum;
+        randomNum = (float)temp;
+
+        return randomNum;
     }
 
     //background
@@ -182,7 +208,7 @@ public class GameManager : MonoBehaviour
     //food
     public bool isFoodCoolTime()
     {
-        if (playTime - foodStartTime < 4f) return true;
+        if (playTime - foodStartTime < 240f) return true;
         else return false;
     }
     public void foodEffect()
@@ -215,6 +241,17 @@ public class GameManager : MonoBehaviour
         isSleeping = false;
     }
 
+    //dog
+    public void dogStart()
+    {
+        dogPlaying = true;
+    }
+
+    public void dogEnd()
+    {
+        dogPlaying = false;
+    }
+
     //state
     public float getStatus(int index)
     {
@@ -242,5 +279,16 @@ public class GameManager : MonoBehaviour
     {
         status.updateStatus(1, -20f);
     }
+
+    public bool HomeworkPoss()
+    {
+        if (randomNum <= 36f || homework)
+        {
+            return homework;
+        }
+        if ()
+    }
+
+    
 
 }

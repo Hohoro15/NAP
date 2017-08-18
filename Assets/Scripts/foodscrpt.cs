@@ -15,7 +15,7 @@ public class foodscrpt : MonoBehaviour {
         gray_chicken = transform.GetChild(1).gameObject;
         chicken.SetActive(true);
         gray_chicken.SetActive(false);
-        GameManager.gm.foodStartTime = GameManager.gm.getPlayTime() - 4f;
+        GameManager.gm.foodStartTime = GameManager.gm.getPlayTime() - 240f;
                
 
 
