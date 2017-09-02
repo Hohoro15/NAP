@@ -186,7 +186,7 @@ public class GameManager : MonoBehaviour
     //calculate random
     public float randomGet()
     {
-        randomNum = Random.Range(1f, 145f);
+        randomNum = Random.Range(0f, 18f);
         int temp = (int)randomNum;
         randomNum = (float)temp;
 
@@ -280,14 +280,7 @@ public class GameManager : MonoBehaviour
         status.updateStatus(1, -20f);
     }
 
-    public bool HomeworkPoss()
-    {
-        if (randomNum <= 36f || homework)
-        {
-            return homework;
-        }
-        if ()
-    }
+
 
     
 

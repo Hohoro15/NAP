@@ -6,15 +6,13 @@ using UnityEngine.UI;
 public class SaveandLoad : MonoBehaviour {
 
     float playGameTime;
-    float tempPlayTime;
     
-
 
 	// Use this for initialization
 	void Start () {
         playGameTime = PlayerPrefs.GetFloat("playGameTime", 0f);
         PlayerPrefs.Save();
-        tempPlayTime = GameManager.gm.getPlayTime();
+        
 		
 	}
 	
@@ -22,4 +20,10 @@ public class SaveandLoad : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    void OnSaveClick()
+    {
+        PlayerPrefs.SetFloat("playGameTime", GameManager.gm.getPlayTime());
+        PlayerPrefs.Save();
+    }
 }

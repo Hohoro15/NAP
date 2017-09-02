@@ -33,7 +33,7 @@ public class Questscript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (GameManager.gm.getDay()<=36f)
+       
 
 		
 	}
